@@ -1,14 +1,13 @@
 ---
 title: Testing Your Project on Multiple Operating Systems
 layout: en
-permalink: /user/multi-os/
+permalink: /user/multi-os/live.me
 ---
 
-> The feature described in this document is considered beta.
-> Some features may not work as described.
 
-If your code is used on multiple operating systems it probably should be tested on
-multiple operating systems. Travis CI can test on Linux and OS X.
+> The feature described in this document is considered beta.Some features may not work as described.
+
+If your code is used on multiple operating systems it probably should be tested onmultiple operating systems. Travis CI can test on Linux and OS X.
 
 To enable testing on multiple operating systems add the `os` key to your `.travis.yml`:
 
@@ -24,40 +23,29 @@ If you are already using a [build matrix](/user/customizing-the-build/#Build-Mat
 
 ## Operating System differences
 
-When you test your code on multiple operating systems, be aware of differences
-that can affect your tests:
+When you test your code on multiple operating systems, be aware of differencesthat can affect your tests:
 
-- Not all tools may be available on OS X.
+* Not all tools may be available on OS X.
 
-  We are still working on building up the toolchain on the [OS X Environment](/user/osx-ci-environment/).
-  Missing software may be available via Homebrew.
+  We are still working on building up the toolchain on the [OS X Environment](/user/osx-ci-environment/).Missing software may be available via Homebrew.
 
-- Language availability.
+* Language availability.
 
-  Not all languages are available on all operating systems, and different versions maybe installed on different systems.
-  Before you embark on the multi-os testing journey, be sure to check
-  this GitHub issue [detailing what languages are available](https://github.com/travis-ci/travis-ci/issues/2320).
+  Not all languages are available on all operating systems, and different versions maybe installed on different systems.Before you embark on the multi-os testing journey, be sure to checkthis GitHub issue [detailing what languages are available](https://github.com/travis-ci/travis-ci/issues/2320).
 
-- The file system behavior is different.
+* The file system behavior is different.
 
-  The HFS+ file system on our OS X workers is case-insensitive (which is the default for OS X),
-  and the files in a directory are returned sorted.
-  On Linux, the file system is case-sensitive, and returns directory entries in
-  the order they appear in the directory internally.
+  The HFS+ file system on our OS X workers is case-insensitive (which is the default for OS X),and the files in a directory are returned sorted.On Linux, the file system is case-sensitive, and returns directory entries inthe order they appear in the directory internally.
 
-   Your tests may implicitly rely on these behaviors, and could fail because of them.
+  Your tests may implicitly rely on these behaviors, and could fail because of them.
 
-- They are different operating systems, after all.
+* They are different operating systems, after all.
 
-  Commands may have the same name on the Mac and Linux, but they may have different flags,
-  or the same flag may mean different things.
-  In some cases, commands that do the same thing could have different names.
-  These need to be investigated case by case.
+  Commands may have the same name on the Mac and Linux, but they may have different flags,or the same flag may mean different things.In some cases, commands that do the same thing could have different names.These need to be investigated case by case.
 
 ## Allowing Failures on Jobs Running on One Operating System
 
-To ignore the results of jobs on one operating system, add the following
-to your `.travis.yml`:
+To ignore the results of jobs on one operating system, add the followingto your `.travis.yml`:
 
 ```yaml
 matrix:
